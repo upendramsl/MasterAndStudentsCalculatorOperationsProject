@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Login
- */
+
 @WebServlet("/Hello1")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,8 +21,7 @@ public class Login extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
 		String lmemail=request.getParameter("userEmail");
 		String lmpassword=request.getParameter("userpass");
 		
@@ -45,6 +42,12 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd=request.getRequestDispatcher("MasterHome.jsp");
 				rd.forward(request, response);
 			}
+			 else
+			 {
+				 response.sendRedirect("ErrorPage.html"); 
+				 break;
+				 
+			 }
 		 }}
 		 else if(lsemail!=null)
 			{
@@ -57,13 +60,16 @@ public class Login extends HttpServlet {
 					rd.forward(request, response);
 					
 				}
+				else
+				 {
+					 response.sendRedirect("ErrorPage.html"); 
+					 break;
+					 
+				 }
 			 }
 	            
-		} 
-		 else
-		 {
-			 response.sendRedirect("ErrorPAge.html"); 
-		 }
+		  } 
+		
 	    
 		
 	}

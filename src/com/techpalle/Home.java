@@ -29,7 +29,7 @@ public class Home extends HttpServlet {
 		
 		PrintWriter out=response.getWriter();
 		DataAccessObject d=new DataAccessObject();
-		int no=request.getIntHeader("number");
+		
 		String name=request.getParameter("user");
 		String op=request.getParameter("operation");
 		String fn=request.getParameter("firstnumber");

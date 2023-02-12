@@ -67,6 +67,6 @@ enter the second number:</td>
 </form>
 <h2>Please click below link To see StudentActivity</h2>
 </br>
-<a href="Masterstudents.html">Clickher</a>
+<a href="Masterstudents.html">Click her</a>
 </body>
 </html>

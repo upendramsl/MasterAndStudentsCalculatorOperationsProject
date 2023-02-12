@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 
 public class DataAccessObject
 {
@@ -179,7 +177,8 @@ public void updating(String fn,String sn,String n,String op)
 		
 		e.printStackTrace();
 	}
-}public void remarksUpdating(String rema,String sid)
+}
+public void remarksUpdating(String rema,String sid)
 {
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -189,6 +188,54 @@ public void updating(String fn,String sn,String n,String op)
 		
 		ps.setString(1,rema);
 		ps.setInt(2,Integer.parseInt(sid));
+		ps.executeUpdate();
+		ps.close();
+		con.close();
+		
+	} catch (ClassNotFoundException e) {
+
+		e.printStackTrace();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	
+	
+}
+public void studentPasswordUpdating(String pass,String email)
+{
+	try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","upendra");
+		String qry="update studentregistrations set Password=? where email=?";
+		PreparedStatement ps=con.prepareStatement(qry);
+		
+		ps.setString(1,pass);
+		ps.setString(2,email);
+		ps.executeUpdate();
+		ps.close();
+		con.close();
+		
+	} catch (ClassNotFoundException e) {
+
+		e.printStackTrace();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	
+	
+}
+public void masterPasswordUpdating(String pass,String email)
+{
+	try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","upendra");
+		String qry="update masterregistrations set Password=? where email=?";
+		PreparedStatement ps=con.prepareStatement(qry);
+		
+		ps.setString(1,pass);
+		ps.setString(2,email);
 		ps.executeUpdate();
 		ps.close();
 		con.close();
