@@ -35,40 +35,35 @@ public class Home extends HttpServlet {
 		String fn=request.getParameter("firstnumber");
 		String sn=request.getParameter("secondnumber");
 		
-
+     if(name!=null)
+     {
 	    d.updating(fn,sn,name,op);
-		String ID = request.getParameter("id"); 
-	    String na=request.getParameter("name");
+	    out.append("<h1>Successfully Done</h1>");
+     }  
+		String em = request.getParameter("email"); 
+	    
 	  
 	    ArrayList<LoginClass> h1=d.studentReading();
 		for(LoginClass l:h1)
 		{
-		if(l.getEm().equals(na))
+		if(l.getEm().equals(em))
 			{
 		try { 
 			Class.forName("com.mysql.jdbc.Driver"); 
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "upendra"); 
-			PreparedStatement ps = con.prepareStatement("select * from studentregistrations where sid=?"); 
-			ps.setInt(1, Integer.parseInt(ID)); 
+			PreparedStatement ps = con.prepareStatement("select * from studentregistrations where email=?"); 
+			ps.setString(1,em);
 			
- 
 			ResultSet rs = ps.executeQuery(); 
-				while (rs.next()) { 
-				out.println("<h1>"+rs.getString("operation")+"</h1>"); 
-				out.println("<h1>"+rs.getInt("fisrt")+"</h1>");
-				out.println("<h1>"+rs.getInt("second")+"</h1>");
-				out.print("<h1>"+rs.getString("remarks")+"</h1>");
+				while (rs.next()) 
+				{ 
+				out.append("<h1>Previous Problem Remarks</h1>");
+				out.println("<h2>"+rs.getString("operation")+"</h2>"); 
+				out.println("<h2>"+rs.getInt("fisrt")+"</h2>");
+				out.println("<h2>"+rs.getInt("second")+"</h2>");
+				out.print("<h2>"+rs.getString("remarks")+"</h2>");
 			} 
-				out.append("<form action=\"MHome\" method=\"post\">\r\n"
-						+ "Enter your name:\r\n"
-						+ "<input type=\"text\" name=\"username\"/>\r\n"
-						+ "</br>\r\n"
-						+ "Enter Your Answer:\r\n"
-						+ "<input type=\"text\" name=\"usertext\">\r\n"
-						+ "<input type=\"submit\" value=\"Submit\">\r\n"
-						+ " </form>");
-	   
-			
+				
 			
 			ps.close();
 			con.close();
@@ -76,5 +71,6 @@ public class Home extends HttpServlet {
 			e.printStackTrace(); 
 	    
 		}	
+		
 }
 }}}

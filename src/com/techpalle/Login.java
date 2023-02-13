@@ -42,13 +42,10 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd=request.getRequestDispatcher("MasterHome.jsp");
 				rd.forward(request, response);
 			}
-			 else
-			 {
-				 response.sendRedirect("ErrorPage.html"); 
-				 break;
-				 
-			 }
-		 }}
+			
+		 }
+		 response.sendRedirect("ErrorPage.html"); 
+		 }
 		 else if(lsemail!=null)
 			{
 			 ArrayList<LoginClass> h1=d.studentReading();
@@ -60,15 +57,16 @@ public class Login extends HttpServlet {
 					rd.forward(request, response);
 					
 				}
-				else
-				 {
-					 response.sendRedirect("ErrorPage.html"); 
-					 break;
-					 
-				 }
+				
 			 }
+			 response.sendRedirect("ErrorPage.html"); 
 	            
 		  } 
+		 else
+		 {
+			 response.sendRedirect("ErrorPage.html"); 
+		 
+		 }
 		
 	    
 		

@@ -32,13 +32,16 @@ public class MHome extends HttpServlet {
 	    String name= request.getParameter("username"); 
 	    String sum=request.getParameter("usertext");
 	    DataAccessObject d=new DataAccessObject();
-	   
-		  
+	    PrintWriter out=response.getWriter();
+		 if(sum!=null)
+		 {
 		d.resultUpdating(sum,name);
-	    
+		out.append("<h1>Succesfully Done</h1>");
+		 }
+		
 	    String sid=request.getParameter("usno");
 	    
-	    PrintWriter out=response.getWriter();
+	   
 	   
 		try { 
 			Class.forName("com.mysql.jdbc.Driver"); 

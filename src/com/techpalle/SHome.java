@@ -1,6 +1,8 @@
 package com.techpalle;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +28,12 @@ public class SHome extends HttpServlet {
 		String name=request.getParameter("susername");
 		String rema=request.getParameter("susertext");
 		DataAccessObject d=new DataAccessObject();
+		PrintWriter pw=response.getWriter();
 		
 		d.remarksUpdating(rema,name);
+		
+		pw.append("<h1>SuccessFully Remarks Done</h1>");
+		
 	}
 
 }
